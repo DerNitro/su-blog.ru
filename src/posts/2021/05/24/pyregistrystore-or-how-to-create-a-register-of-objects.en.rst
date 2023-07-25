@@ -73,8 +73,8 @@ The result was pyRegistryStore_.
 
 Let's go...
 
-PyYAML
-======
+YAML: YAML Ain't Markup Language
+================================
 
 `YAML <http://yaml.org/>`_ has grown from a markup language to a powerful data serialization tool.
 
@@ -242,6 +242,7 @@ And so let's say we have a small role to set up and configure time synchronizati
 Let's call it **ntp-client**
 
 The first thing we need is to get a list of all available images:
+
 ::
 
     pyRegistryStore.py image get | jq .[].name
@@ -253,6 +254,7 @@ In total, we have 2 images, or to be more precise, **a list of images** on which
 And since we have a list, we can organize a loop:
 
 **check if the test for the image was successful for the current commit**
+
 ::
 
     pyRegistryStore.py role get name=ntp-client image=ubuntu_20.04_v0.image commit=b312abbb05a9be4fe82abcb60d44b7bdd0220bdc status=true
@@ -261,6 +263,7 @@ as expected, the list turned out to be empty, which means we need to check this 
 if we received a list for the output, then we can skip testing.
 
 **We run the Molecula, we run the tests, if we catch success, we write the information to the registry**
+
 ::
 
     pyRegistryStore.py role set name=ntp-client image=ubuntu_20.04_v0.image commit=b312abbb05a9be4fe82abcb60d44b7bdd0220bdc status=true
@@ -268,6 +271,7 @@ if we received a list for the output, then we can skip testing.
 well, if the tests were not successful, then just change the status = true key to status = false
 
 Let's say our tests passed like this:
+
 ::
 
     pyRegistryStore.py role get name=ntp-client | jq

@@ -73,8 +73,8 @@ PyYAML_ , и пока что со своей задачей справляетс
 
 Поехали...
 
-PyYAML
-======
+YAML: YAML Ain't Markup Language
+================================
 
 `YAML <http://yaml.org/>`_ вырос из языка разметки в мощный инструмент сериализации данных.
 
@@ -148,6 +148,7 @@ PyYAML
  - Статус
 
 Получился следующий код
+
 ::
 
     import objects
@@ -242,6 +243,7 @@ Pipeline
 Назовем ее **ntp-client**
 
 И так первое что нам нужно, это получить список всех доступных образов:
+
 ::
 
     pyRegistryStore.py image get | jq .[].name
@@ -253,6 +255,7 @@ Pipeline
 А раз у нас есть список, то мы можем организовать цикл:
 
 **проверим был ли тест для образа успешным для текущего коммита**
+
 ::
 
     pyRegistryStore.py role get name=ntp-client image=ubuntu_20.04_v0.image commit=b312abbb05a9be4fe82abcb60d44b7bdd0220bdc status=true
@@ -261,6 +264,7 @@ Pipeline
 если у нас на вывод пришел список, то можем и пропустить тестирование.
 
 **Запускаем молекулу прогоняем тесты, если словили успех, записываем информацию в реестр**
+
 ::
 
     pyRegistryStore.py role set name=ntp-client image=ubuntu_20.04_v0.image commit=b312abbb05a9be4fe82abcb60d44b7bdd0220bdc status=true
@@ -268,6 +272,7 @@ Pipeline
 ну а если тесты прошли не успешно, то просто меняем ключ status=true на status=false
 
 Допустим у нас тесты прошли так:
+
 ::
 
     pyRegistryStore.py role get name=ntp-client | jq
