@@ -1,0 +1,46 @@
+spellchecker: aspell
+
+matrix:
+- name: EN RST
+  sources:
+  - pages/**/*.en.rst
+  - posts/**/*.en.rst
+  aspell:
+    lang: en
+    d: en_US
+  dictionary:
+    wordlists:
+      - .pyspelling/my-dictionary-en.txt
+    output: /tmp/output.dic
+  pipeline:
+  - resplendent.filters.restructuredtext:
+  - pyspelling.filters.html:
+      comments: false
+      attributes:
+      - title
+      - alt
+      ignores:
+      - code
+      - pre
+  - pyspelling.filters.url:
+- name: RU RST
+  sources:
+  - pages/**/*.ru.rst
+  - posts/**/*.ru.rst
+  aspell:
+    lang: ru
+  dictionary:
+    wordlists:
+      - .pyspelling/my-dictionary-ru.txt
+    output: /tmp/output.dic
+  pipeline:
+  - resplendent.filters.restructuredtext:
+  - pyspelling.filters.html:
+      comments: false
+      attributes:
+      - title
+      - alt
+      ignores:
+      - code
+      - pre
+  - pyspelling.filters.url:

@@ -2,3 +2,4 @@ src/__pycache__/
 src/cache/
 src/output/
 .doit.db.*
+dictionary.dic

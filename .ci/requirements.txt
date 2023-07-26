@@ -1,1 +1,4 @@
 Nikola[extras] == 8.2.4
+restructuredtext-lint == 1.4.0
+pyspelling==2.8.2
+resplendent==0.3.5
