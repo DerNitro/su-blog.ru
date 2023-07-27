@@ -3,7 +3,8 @@ FROM python:3.10-alpine
 RUN apk --no-cache add py3-pip yaml-dev gcc python3-dev linux-headers libc-dev aspell aspell-en aspell-ru
 COPY requirements.txt /requirements.txt
 
-RUN adduser -D ci -u 9999
+ARG UID
+RUN adduser -D ci -u $UID
 USER ci
 
 RUN /usr/bin/pip3 install --no-cache-dir --upgrade --no-warn-script-location pip \
