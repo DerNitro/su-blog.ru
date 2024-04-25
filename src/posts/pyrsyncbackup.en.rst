@@ -36,7 +36,7 @@ For what?! The task was as follows:
  * Not all nodes have direct access.
 
 First, a prototype was created that performed all these functions, worked on CRON and everyone was happy while
-the number of servers did not exceed overdohuya. + the release of the new software added work on reconfiguring
+the number of servers did not exceed over 100. + the release of the new software added work on re-configuring
 pyRsyncBackup_.
 
 More requirements have appeared:

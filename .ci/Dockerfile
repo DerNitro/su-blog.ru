@@ -1,15 +1,15 @@
-FROM python:3.10-alpine
+FROM python:3.10-slim-bookworm
 
-RUN apk --no-cache add py3-pip yaml-dev gcc python3-dev linux-headers libc-dev aspell aspell-en aspell-ru
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt update && apt install -y hunspell hunspell-en-us hunspell-ru && rm -rf /var/lib/apt/lists/*
+
 COPY requirements.txt /requirements.txt
+RUN /usr/local/bin/pip3 install --no-cache-dir --break-system-packages --upgrade --no-warn-script-location -r /requirements.txt \
+    && rm -rf /tmp/.cache
 
 ARG UID
-RUN adduser -D ci -u $UID
+RUN adduser --system --disabled-password --uid $UID ci
 USER ci
-
-RUN /usr/bin/pip3 install --no-cache-dir --upgrade --no-warn-script-location pip \
-    && /usr/bin/pip3 install --no-cache-dir --upgrade --no-warn-script-location -r /requirements.txt \
-    && rm -rf /tmp/.cache
 
 VOLUME [ "/data" ] 
 WORKDIR /data

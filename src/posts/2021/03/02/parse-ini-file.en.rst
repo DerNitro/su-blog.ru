@@ -42,5 +42,5 @@ Then a one-line script will not work anymore.
 Search for a solution for linux gave no results :(,
 although maybe I'm just lazy and have not looked through all the search results.
 
-The decision was made quickly, we take Python and the configparser package.
+The decision was made quickly, we take Python and the ``configparser`` package.
 Result ini-file_.

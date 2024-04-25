@@ -88,12 +88,12 @@ The first search results came up with a solution - Disable PAM.
 .. image:: /images/posts/sshpam_limitsso/2020-12-24_06-37-06.png
     :width: 40%
 
-And change /etc/security/limits.conf
+And change ``/etc/security/limits.conf``
 
 .. image:: /images/posts/sshpam_limitsso/2020-12-24_06-37.png
     :width: 60%
 
-After gaining access to the server (restart and LiveCD) we were surprised,
+After gaining access to the server (restart and Live-CD) we were surprised,
 there are no lifted limits!
 
 What happened
@@ -108,19 +108,19 @@ At the last step, the problem arose, it is responsible for this -
 **pam_limits.so**.
 
 **pam_limits** serves to allocate resources to the user,
-the setrlimit system call is launched, in addition to allocating restrictions
+the ``setrlimit`` system call is launched, in addition to allocating restrictions
 on CPU and RAM, the maximum number of open files is also allocated.
-The strace log confirmed that an error occurs when allocating NOFILE resources:
+The ``strace`` log confirmed that an error occurs when allocating ``NOFILE`` resources:
 
     ``setrlimit(RLIMIT_NOFILE, {rlim_cur=1685744, rlim_max=16815744}) = -1``
 
-We understand that the value 1685744 (/etc/security/limits.conf) is not correct,
+We understand that the value 1685744 (``/etc/security/limits.conf``) is not correct,
 but we do not understand why.
 
 The next hour, solving the problem, was devoted to studying the documentation
 and the Internet, and this is what we learned:
-The value set in setrlimit for NOFILE should not exceed the value
-/proc/sys/fs/nr_open core, our value was almost 3 times higher.
+The value set in ``setrlimit`` for ``NOFILE`` should not exceed the value
+``/proc/sys/fs/nr_open`` core, our value was almost 3 times higher.
 
 **Aligning the values, the problem was solved.**
 
@@ -128,8 +128,8 @@ Why did it happen?
 ==================
 
 When solving the error “too many open files”, the parameter was increased based
-on the value of /proc/sys/fs/file-max, as well as this value was added to
-the file /etc/security/limits.conf which exceeded /proc/sys/fs/nr_open.
+on the value of ``/proc/sys/fs/file-max``, as well as this value was added to
+the file ``/etc/security/limits.conf`` which exceeded ``/proc/sys/fs/nr_open``.
 
 Why can this happen to me?
 ==========================
@@ -145,22 +145,18 @@ Why can this happen to me?
 
 Conclusions
 ===========
-**file-max & file-nr**:
-
-The value in file-max denotes the maximum number of file-
+``file-max & file-nr``: The value in file-max denotes the maximum number of file-
 handles that the Linux kernel will allocate. When you get lots
 of error messages about running out of file handles, you might
 want to increase this limit.
 
-**nr_open**:
-
-This denotes the maximum number of file-handles a process can
+``nr_open``: This denotes the maximum number of file-handles a process can
 allocate. Default value is 1024*1024 (1048576) which should be
-enough for most machines. Actual limit depends on RLIMIT_NOFILE
+enough for most machines. Actual limit depends on ``RLIMIT_NOFILE``
 resource limit.
 
-**pam_limits.so**  - uses *setrlimit*, to allocate resources to the user,
-which in turn uses the kernel's nr_open value to determine the maximum value
+``pam_limits.so``  - uses ``setrlimit``, to allocate resources to the user,
+which in turn uses the kernel's ``nr_open`` value to determine the maximum value
 for file descriptors.
-What other applications use the *setrlimit* call is not known,
+What other applications use the ``setrlimit`` call is not known,
 so **BE CAREFUL ON DEPLOYING !!!**

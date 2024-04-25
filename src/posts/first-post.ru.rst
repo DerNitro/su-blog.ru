@@ -27,8 +27,8 @@
 --------
 Статья для проверки фунционала Nikola
 
-Bash sripts
------------
+Bash scripts
+------------
 Простой пример листинга bash скрипта
 
 .. code-block:: bash
@@ -42,8 +42,8 @@ Bash sripts
     echo
     exit 0
 
-Python sripts
--------------
+Python scripts
+--------------
 Простой пример листинга python скрипта
 
 .. code-block:: python

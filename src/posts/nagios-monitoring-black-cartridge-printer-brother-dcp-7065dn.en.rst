@@ -25,7 +25,7 @@
 |PostImageTitle|
 
 The IT farm has 4 Brother DCP-7065DN printers, I wanted to monitor the status of the cartridges, and ran into problems:
- 1. The plugin for Nagios check_snmp_printer is not suitable, it returns the wrong value, although it is perfect for monitoring the state of the drum.
+ 1. The plugin for Nagios ``check_snmp_printer`` is not suitable, it returns the wrong value, although it is perfect for monitoring the state of the drum.
  2. I could not find on the network what SNMP OID of the cartridge status for this printer.
 
 I wrote to Brother support ... And unexpectedly for themselves they answered and gave me the OID for my printer.

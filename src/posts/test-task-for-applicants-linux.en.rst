@@ -37,8 +37,8 @@ For verification, a specially broken image of the virtual machine was created.
 Restoring this VM answer the following questions:
  - Reset password root
  - Working with fstab
- - Iptables|firewalld
- - Routing linux
+ - iptables|firewalld
+ - Routing Linux
  - systemd
  - LVM
  - Extended file attributes

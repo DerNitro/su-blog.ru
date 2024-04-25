@@ -31,8 +31,8 @@ Working with large data streams and analyzing them, you face a problem
 determining the ownership of the file, its source, since 99% of all flows
 generate soulless electric machines.
 
-Sometimes it can be difficult to determine where the sasder345asd.txt or
-123_HDR-Tas.csv file came from (in fact, this is just a set of letters,
+Sometimes it can be difficult to determine where the ``sasder345asd.txt`` or
+``123_HDR-Tas.csv`` file came from (in fact, this is just a set of letters,
 in most cases the file names have a structured name, but this is still hard
 to read for a person).
 

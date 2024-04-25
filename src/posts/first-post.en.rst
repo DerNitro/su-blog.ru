@@ -27,8 +27,8 @@ Start
 -----
 An article to test the Nikola functionality
 
-Bash sripts
------------
+Bash scripts
+------------
 A simple example of listing a bash script
 
 .. code-block:: bash
@@ -42,8 +42,8 @@ A simple example of listing a bash script
     echo
     exit 0
 
-Python sripts
--------------
+Python scripts
+--------------
 A simple example of listing a python script
 
 .. code-block:: python

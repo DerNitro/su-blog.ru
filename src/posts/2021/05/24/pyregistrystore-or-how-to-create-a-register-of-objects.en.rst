@@ -48,7 +48,7 @@ Let's go...
 Starting...
 ===========
 Any CI / CD automation has reference books, registries, test environments, analyzers, source code control systems,
-and this is all controlled by the orchestrator.
+and this is all controlled by the orchestra's system.
 
 Our small group prepares and tests images of virtual machines + development of Ansible roles for installing
 the necessary software according to the role model.
@@ -66,7 +66,7 @@ I could not use the script written at work, because there are quite a few letter
 contract. Therefore, I started writing examples from scratch and only describing the topic of the planned article...
 
 At some point in time when writing the code, I realized that it would be nice to have a utility for creating a registry
-of objects, and objects should be dynamic, no hardcode, it should be possible for the user to create object templates
+of objects, and objects should be dynamic, no hard-code, it should be possible for the user to create object templates
 by himself, spending a minimum of effort.
 
 The result was pyRegistryStore_.
@@ -262,7 +262,7 @@ And since we have a list, we can organize a loop:
 as expected, the list turned out to be empty, which means we need to check this role on this VM image,
 if we received a list for the output, then we can skip testing.
 
-**We run the Molecula, we run the tests, if we catch success, we write the information to the registry**
+**We run the Molecule, we run the tests, if we catch success, we write the information to the registry**
 
 ::
 

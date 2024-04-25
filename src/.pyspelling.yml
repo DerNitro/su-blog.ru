@@ -1,19 +1,17 @@
-spellchecker: aspell
+spellchecker: hunspell
 
 matrix:
-- name: EN RST
+- name: EN HTML
   sources:
-  - pages/**/*.en.rst
-  - posts/**/*.en.rst
-  aspell:
-    lang: en
+  - output/en/pages/**/*.html
+  - output/en/posts/**/*.html
+  hunspell:
     d: en_US
   dictionary:
     wordlists:
       - .pyspelling/my-dictionary-en.txt
     output: /tmp/output.dic
   pipeline:
-  - resplendent.filters.restructuredtext:
   - pyspelling.filters.html:
       comments: false
       attributes:
@@ -22,19 +20,22 @@ matrix:
       ignores:
       - code
       - pre
+      - nav
+      - img[alt]
+      - a
   - pyspelling.filters.url:
 - name: RU RST
   sources:
-  - pages/**/*.ru.rst
-  - posts/**/*.ru.rst
-  aspell:
-    lang: ru
+  - output/pages/**/*.html
+  - output/posts/**/*.html
+  hunspell:
+    d: ru_RU,en_US
   dictionary:
     wordlists:
+      - .pyspelling/my-dictionary-en.txt
       - .pyspelling/my-dictionary-ru.txt
     output: /tmp/output.dic
   pipeline:
-  - resplendent.filters.restructuredtext:
   - pyspelling.filters.html:
       comments: false
       attributes:
@@ -43,4 +44,7 @@ matrix:
       ignores:
       - code
       - pre
+      - nav
+      - img[alt]
+      - a
   - pyspelling.filters.url:

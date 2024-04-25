@@ -33,7 +33,7 @@ analysis of the performance and operation of block devices in Linux.
 
 .. TEASER_END
 
-To work on, you need a utility **blktrace**, installation on CentOS 7
+To work on, you need a utility ``blktrace``, installation on CentOS 7
 looks like this:
 
 .. code-block:: bash
@@ -47,8 +47,8 @@ the device.
 
     [root@centos7 blktrace]# blktrace -d /dev/sda -o sda
 
-In this command, we specify our device through the ** - d ** key, and through
-the ** - o ** key the file that will contain our dump.
+In this command, we specify our device through the ``-d`` key, and through
+the ``-o`` key the file that will contain our dump.
 
 The dump file is binary, and to display the content in human readable form,
 run the blkparse utility (*which is included in the blktrace package*).
@@ -91,7 +91,7 @@ Standard statistics output consists of the following fields
 
     %D %2c %8s %5T.%9t %5p %2a %3d
 
-**%D** — The device on which the event was executed, Major and minor versions,
+``%D`` — The device on which the event was executed, Major and minor versions,
 the ratio can be viewed through the output of the lsblk utility
 
 .. code-block:: bash
@@ -105,40 +105,40 @@ the ratio can be viewed through the output of the lsblk utility
       └─centos_centos7-swap 253:1   0 820M  0 lvm [SWAP]
     sr0 11:0 1 1024M 0 rom
 
-**%2c** — The number of the CPU core that handled this event.
+``%2c`` — The number of the CPU core that handled this event.
 
-**%8s** — sequence number of event
+``%8s`` — sequence number of event
 
-**%5T.%9t** — Seconds and nanoseconds since the start of the dump.
+``%5T.%9t`` — Seconds and nanoseconds since the start of the dump.
 
-**%5p** — PID
+``%5p`` — PID
 
-**%2a** — Action with a data block, the main ones are:
+``%2a`` — Action with a data block, the main ones are:
 
-**С** — complet. The request was completed, but this does not mean that it was
+``С`` — complete. The request was completed, but this does not mean that it was
 completed successfully.
 
-**Q** — queued. Checking the queue.
+``Q`` — queued. Checking the queue.
 
-**A** — remap. Send the event to the device below. For example from LVM to disk.
+``A`` — remap. Send the event to the device below. For example from LVM to disk.
 
-**G** — get request. Sending a request to the device to allocate the container
+``G`` — get request. Sending a request to the device to allocate the container
 of the data structure.
 
-**I** — inserted. Add the Linux scheduler to the queue.
+``I`` — inserted. Add the Linux scheduler to the queue.
 
-**D** — issued. Passing the block to the device driver.
+``D`` — issued. Passing the block to the device driver.
 
-**M** — back merge, **F** — front merge. There are blocks that have a common
+``M`` — back merge, ``F`` — front merge. There are blocks that have a common
 data boundary and can be combined in one operation.
 
-**%3d** — RWBS field:
+``%3d`` — RWBS field:
 
-**R** — read,
-**W** — write,
-**D** — canceling an operation,
-**B** — barrier operation,
-**S** — synchronization.
+``R`` — read,
+``W`` — write,
+``D`` — canceling an operation,
+``B`` — barrier operation,
+``S`` — synchronization.
 
 Statistics
 ==========
@@ -148,7 +148,7 @@ merged and executed.
 
 Practical use
 =============
-Start dump recording on SDA device
+Start dump recording on block device
 
 .. code-block:: bash
 
@@ -192,7 +192,7 @@ Let's take reading one block and what we see:
     8,0    0       98     4.746820116  3944  D   R 13560296 + 32 [bash]
     8,0    0       99     4.761404769     0  C   R 13560296 + 32 [0]
 
-**91** — the event arrived on device 8.2 and remap was performed on device 8.0.
+``91`` — the event arrived on device 8.2 and remap was performed on device 8.0.
 At the same time, the tail of the message (<- (253.0) 9779688) tells us that
 this event also came to us from device 253.0, but since we took the dump from
 device 8.0, we do not see it. Also, note that the block itself changes,
@@ -211,17 +211,17 @@ lsblk — will help us define the event trace
       └─centos_centos7-swap   253:1  0  820M  0 lvm  [SWAP]
     sr0                       11:0   1 1024M  0 rom
 
-**92** — remap event to device 8.0
+``92`` — remap event to device 8.0
 
-**93** — queued. Checking the io queue.
+``93`` — queued. Checking the IO queue.
 
-**94** — get request. Checking device readiness.
+``94`` — get request. Checking device readiness.
 
-**96** — inserted. Adding a read command to the queue.
+``96`` — inserted. Adding a read command to the queue.
 
-**98** — issued. Send to device.
+``98`` — issued. Send to device.
 
-**99** — complet. Device notification that task completed.
+``99`` — completed. Device notification that task completed.
 
 If we disassemble this event, we see that it was completed successfully,
 in **0.014608553** seconds, which is pretty fast, but if we break it down into
@@ -285,11 +285,11 @@ BTT utility, dump visualization )
        Overall |   0.0087%   0.2648%   0.0002%   6.3111%  93.3290%
 
 Transcript:
- * **Q2Q** — time between system queue traces
- * **Q2I** — Time required to insert or merge incoming I / O into a request queue.
- * **Q2G** — The time it takes to receive the request.
- * **G2I** — The time it takes to put this request on the request queue.
- * **Q2M** — Time to merge
- * **I2D** — The time spent on the request queue.
- * **D2C** — Time of request execution, from the moment of transmission to the device.
- * **Q2C** — Q2I + I2D + D2C
+ * ``Q2Q`` — time between system queue traces
+ * ``Q2I`` — Time required to insert or merge incoming I / O into a request queue.
+ * ``Q2G`` — The time it takes to receive the request.
+ * ``G2I`` — The time it takes to put this request on the request queue.
+ * ``Q2M`` — Time to merge
+ * ``I2D`` — The time spent on the request queue.
+ * ``D2C`` — Time of request execution, from the moment of transmission to the device.
+ * ``Q2C`` — ``Q2I`` + ``I2D`` + ``D2C``

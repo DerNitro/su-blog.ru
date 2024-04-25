@@ -1,7 +1,7 @@
 .. title: Collect TCP|UDP sessions in Linux
 .. slug: tcpudp-sessii-v-linux
 .. date: 2020-04-12 12:00:00 UTC+03:00
-.. tags: linux, network, python, tcp, udp
+.. tags: linux, network, python, TCP, UDP
 .. category: monitoring
 .. link:
 .. description:
@@ -33,7 +33,7 @@ Preamble
 ========
 
 Somehow I caught sight of a script to collect all connections on the host, well,
-that is a good idea, we put it in a zabix, wait ... 5 minutes ... 10 minutes ...
+that is a good idea, we put it in a zabbix, wait ... 5 minutes ... 10 minutes ...
 No values.
 
 The error struck, the script could not keep within the allotted 30 seconds.
@@ -53,7 +53,7 @@ As I wrote above, to get the values we need to read the file, but which one!?
 Let's go look for the answer.
 
 We read the terms of reference, we need:
- - SRC IP|PORT and DST IP|PORT for TCP|UDP
+ - Source IP\|PORT and destination IP\|PORT for TCP|UDP
  - The process that generated this connection
  - Only the LISTEN and ESTABLISHED statuses need to be displayed
 
@@ -68,7 +68,7 @@ For what I love Linux systems, the fact that everything in it is "File":
  - Socket -> File
  - …
 
-Information about all tcp / udp sessions is in the files /proc/net/tcp[6]
+Information about all TCP/UDP sessions is in the files /proc/net/tcp[6]
 and /proc/net/udp[6].
 
 .. code-block:: bash
@@ -112,7 +112,7 @@ For example:
 From this list, we can safely pick only socket, where the numerical value will
 be the inode value.
 
-Name and pid information can be obtained from */proc/PID/status*.
+Name and PID information can be obtained from */proc/PID/status*.
 
 Conclusion
 ==========
