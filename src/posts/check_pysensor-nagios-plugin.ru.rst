@@ -9,7 +9,7 @@
 .. author: Sergey <DerNitro> Utkin
 
 
-Дело было давно, с чем связано что я не нашел для генты
+Дело было давно, с чем связано что я не нашел для своей Gentoo
 плагина мониторинга температуры в портах уже не вспомню.
 
 По этому написал `свой <https://github.com/DerNitro/check_pysensor/blob/master/check_pysensor.py>`_.

@@ -39,7 +39,7 @@
  - Работа с fstab
  - Iptables|firewalld
  - Маршрутизация linux
- - Сервисы systemd
+ - Сервис systemd
  - LVM
  - Расширенные атрибуты файлов
  - Восстановление работы PostgreSQL

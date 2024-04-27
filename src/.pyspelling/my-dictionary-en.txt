@@ -8,12 +8,14 @@ CRON
 DCP
 DerNitro
 deserialization
+DN
 Expert
 fd
 file-nr
 firewalld
 fstab
 GitHub
+hardcode
 iLo
 ini
 inode
@@ -31,6 +33,7 @@ Nikola
 nr_open
 ntp
 OID
+openstack
 pam
 PID
 proc
