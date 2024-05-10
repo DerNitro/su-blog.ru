@@ -1,0 +1,50 @@
+spellchecker: hunspell
+
+matrix:
+- name: EN HTML
+  sources:
+  - output/en/pages/**/*.html
+  - output/en/posts/**/*.html
+  hunspell:
+    d: en_US
+  dictionary:
+    wordlists:
+      - .pyspelling/my-dictionary-en.txt
+    output: /tmp/output.dic
+  pipeline:
+  - pyspelling.filters.html:
+      comments: false
+      attributes:
+      - title
+      - alt
+      ignores:
+      - code
+      - pre
+      - nav
+      - img[alt]
+      - a
+  - pyspelling.filters.url:
+- name: RU RST
+  sources:
+  - output/pages/**/*.html
+  - output/posts/**/*.html
+  hunspell:
+    d: ru_RU,en_US
+  dictionary:
+    wordlists:
+      - .pyspelling/my-dictionary-en.txt
+      - .pyspelling/my-dictionary-ru.txt
+    output: /tmp/output.dic
+  pipeline:
+  - pyspelling.filters.html:
+      comments: false
+      attributes:
+      - title
+      - alt
+      ignores:
+      - code
+      - pre
+      - nav
+      - img[alt]
+      - a
+  - pyspelling.filters.url:
