@@ -3,7 +3,7 @@ USER			= $(shell whoami)
 USER_ID			= $(shell id -u $(USER))
 GIT_BRANCH		= $(shell git branch --show-current)
 
-ifeq ($(GIT_BRANCH), 'main')
+ifeq ($(GIT_BRANCH), main)
 LOCAL_PORT		= 8000
 CONTAINER_NAME	= su-blog
 else
@@ -26,11 +26,11 @@ test: build
 
 start: build stop
 	@test -d $(PWD)/src/output || mkdir $(PWD)/src/output
-	@CONTAINER_NAME=$(CONTAINER_NAME) LOCAL_PORT=$(LOCAL_PORT) docker-compose up -d
+	@CONTAINER_NAME=$(CONTAINER_NAME) LOCAL_PORT=$(LOCAL_PORT) docker compose up -d
 	@/bin/echo "Site availeble url http://127.0.0.1:$(LOCAL_PORT)"
 
 stop:
-	@CONTAINER_NAME=$(CONTAINER_NAME) LOCAL_PORT=$(LOCAL_PORT) docker-compose down
+	@CONTAINER_NAME=$(CONTAINER_NAME) LOCAL_PORT=$(LOCAL_PORT) docker compose down
 
 console: build
 	$(DOCKER_RUN) -it --entrypoint /bin/bash $(DOCKER_IMAGE)
