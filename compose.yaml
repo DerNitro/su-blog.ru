@@ -1,4 +1,3 @@
-version: "3"
 services:
   nikola:
     image: "su_blog_nikola:${USER}"
