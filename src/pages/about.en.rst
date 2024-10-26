@@ -28,15 +28,15 @@ Resource:
  * Linkedin_
 
 
-.. Badges:
-.. ```````
+Badges:
+```````
 
-.. .. image:: /images/badges/160905190147.png
-..     :target: https://skillsoft.digitalbadges.skillsoft.com/25c7899d-30c6-4267-81c7-f1734e490498
-..     :height: 150px
-.. .. image:: /images/badges/160905192670.png
-..     :target: https://skillsoft.digitalbadges.skillsoft.com/2865cf5a-aa37-4d31-8b6f-0c8b8a8b52ff
-..     :height: 150px
-.. .. image:: /images/badges/160905197696.png
-..     :target: https://skillsoft.digitalbadges.skillsoft.com/b7065d25-702c-46c0-af58-97a154e5de39
-..     :height: 150px
+.. image:: /images/badges/160905190147.png
+    :target: https://skillsoft.digitalbadges.skillsoft.com/25c7899d-30c6-4267-81c7-f1734e490498
+    :height: 150px
+.. image:: /images/badges/160905192670.png
+    :target: https://skillsoft.digitalbadges.skillsoft.com/2865cf5a-aa37-4d31-8b6f-0c8b8a8b52ff
+    :height: 150px
+.. image:: /images/badges/160905197696.png
+    :target: https://skillsoft.digitalbadges.skillsoft.com/b7065d25-702c-46c0-af58-97a154e5de39
+    :height: 150px
