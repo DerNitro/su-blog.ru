@@ -12,6 +12,10 @@ on:
 
 permissions: read-all
 
+defaults:
+  run:
+    working-directory: ${{ vars.WORKING_FOLDER }}
+
 jobs:
   ci:
     name: Continuous Integration
