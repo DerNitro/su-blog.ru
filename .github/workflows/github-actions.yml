@@ -9,21 +9,20 @@ on:
   push:
     branches:
     - main
-    
 
 permissions: read-all
 
 jobs:
   ci:
-    if: ${{ github.ref != 'refs/heads/main' }}
     name: Continuous Integration
     runs-on: su-blog
     timeout-minutes: 60
     steps:
-    - uses: actions/checkout@v4
-    - run: |
-        echo "Continuous Integration"
-    - run: |
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Run tests
+      if: ${{ github.ref != 'refs/heads/main' }}
+      run: |
         make test
   cd:
     name: Continuous Delivery
@@ -31,7 +30,6 @@ jobs:
     needs: ci
     timeout-minutes: 15
     steps:
-    - run: |
-        echo "Continuous Delivery"
-    - run: |
+    - name: Start service
+      run: |
         make start
