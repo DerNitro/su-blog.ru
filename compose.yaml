@@ -4,7 +4,7 @@ services:
   nikola:
     image: "su_blog_nikola:${USER}"
     ports:
-      - "${LOCAL_PORT}:8000"
+      - "127.0.0.1:${LOCAL_PORT}:8000"
     container_name: "${CONTAINER_NAME}"
     restart: always
     command: serve --browser
