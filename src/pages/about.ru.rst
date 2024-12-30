@@ -18,7 +18,7 @@
     :width: 300
 
 
-**Sergey Utkin** — Technical Expert
+**Sergey Utkin** — Lead Software Development Engineer, YADRO
 
 email: utkins01@gmail.com
 
