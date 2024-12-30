@@ -14,6 +14,7 @@ URL				= https://dev.su-blog.ru
 endif
 
 ifneq ($(USER), blog)
+LOCAL_PORT		= 8888
 URL				= http://127.0.0.1:8888/
 endif
 
@@ -22,8 +23,10 @@ DOCKER_IMAGE    = su_blog_nikola:$(USER)
 
 .PHONY: start build test stop console
 
-build:
+docker: 
 	docker build --build-arg UID=$(USER_ID) -t $(DOCKER_IMAGE) .ci/
+
+build: docker
 	$(DOCKER_RUN) --entrypoint rst-lint $(DOCKER_IMAGE) --level info posts/ pages/
 	$(DOCKER_RUN) $(DOCKER_IMAGE) build -a
 
@@ -38,5 +41,5 @@ start: build stop
 stop:
 	@CONTAINER_NAME=$(CONTAINER_NAME) LOCAL_PORT=$(LOCAL_PORT) docker compose down
 
-console: build
+console: docker
 	$(DOCKER_RUN) -it --entrypoint /bin/bash $(DOCKER_IMAGE)
