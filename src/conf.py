@@ -5,6 +5,7 @@ import time
 # !! This is the configuration of Nikola. !! #
 # !!  You should edit it to your liking.  !! #
 
+# ! Documentation https://getnikola.com/conf.html 
 
 # ! Some settings can be different in different languages.
 # ! A comment stating (translatable) is used to denote those.
@@ -20,7 +21,7 @@ BLOG_AUTHOR = "Sergei Utkin"  # (translatable)
 BLOG_TITLE = {"ru": "DerNitro и все что с ним связано", "en": "DerNitro and everything connected with it"} # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "http://su-blog.ru/"
+SITE_URL = "https://su-blog.ru/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # BASE_URL = "http://su-blog.ru/"
@@ -354,7 +355,7 @@ COMPILERS = {
 # "YAML": YAML wrapped in "---"
 # "TOML": TOML wrapped in "+++"
 # "Pelican": Native markdown metadata or reST docinfo fields. Nikola style for other formats.
-# METADATA_FORMAT = "Nikola"
+METADATA_FORMAT = "Nikola"
 
 # Use date-based path when creating posts?
 # Can be enabled on a per-post basis with `nikola new_post -d`.
@@ -937,10 +938,9 @@ IMAGE_FOLDERS = {'images': 'images'}
 # FAVICONS contains (name, file, size) tuples.
 # Used to create favicon link like this:
 # <link rel="name" href="file" sizes="size"/>
-# FAVICONS = (
-#     ("icon", "/favicon.ico", "16x16"),
-#     ("icon", "/icon_128x128.png", "128x128"),
-# )
+FAVICONS = (
+    ("icon", "/images/favicon.png", "500x500"),
+)
 
 # Show teasers (instead of full posts) in indexes? Defaults to False.
 INDEX_TEASERS  = True

@@ -4,6 +4,8 @@ blkparse
 blktrace
 BTT
 CentOS
+CLI
+Codespaces
 CRON
 DCP
 DerNitro
@@ -20,13 +22,19 @@ iLo
 ini
 inode
 iptables
+IPython
+Jez
 jpeg
+Jupyter
 Kaliningrad
 Linkedin
+linter
+linters
 linux
 lsblk
 LTS
 LVM
+Makefile
 Medium
 Nagios
 Nikola
@@ -43,6 +51,7 @@ pysensor
 pySpoolerRenamer
 PyYAML
 Resource
+reStructuredText
 RSS
 ru
 RWBS
@@ -57,6 +66,7 @@ udp
 UDP
 Utkin
 VM
+YADRO
 yaml
 Yandex
 zabbix
