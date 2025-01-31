@@ -28,12 +28,12 @@ docker:
 
 build: docker
 	$(DOCKER_RUN) --entrypoint rst-lint $(DOCKER_IMAGE) --level info posts/ pages/
-	$(DOCKER_RUN) $(DOCKER_IMAGE) build -a
+	$(DOCKER_RUN) $(DOCKER_IMAGE) build
 
 test: build
 	$(DOCKER_RUN) --entrypoint pyspelling $(DOCKER_IMAGE) -v
 
-start: build stop
+start: build
 	@test -d $(PWD)/src/output || mkdir $(PWD)/src/output
 	@CONTAINER_NAME=$(CONTAINER_NAME) LOCAL_PORT=$(LOCAL_PORT) docker compose up -d
 	@/bin/echo "Site available url $(URL)"
