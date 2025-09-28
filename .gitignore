@@ -4,3 +4,4 @@ src/output/
 .doit.db.*
 dictionary.dic
 .python-version
+src/.doit.db
