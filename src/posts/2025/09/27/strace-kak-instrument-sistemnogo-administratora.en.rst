@@ -424,12 +424,11 @@ It's hard to tell at a glance what this script does. Let's run it through `strac
 
 If you add the `-v` flag, you'll also see the arguments passed.
 
-Creating Sockets or Sending Data
+Creating Socket and Sending Data
 ================================
 
 To avoid inventing code, let's use an example from the documentation
-`Python Socket Programming: Server and Client Example Guide <https://www.digitalocean.com/community/tutorials/python-socket-programming-server-client>`_ 
-by `digitalocean.com`.
+`Python Socket Programming: Server and Client Example Guide <https://www.digitalocean.com/community/tutorials/python-socket-programming-server-client>`_.
 
 The application is simple: a server is started, a client connects and sends a message.
 
