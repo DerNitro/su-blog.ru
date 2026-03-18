@@ -1,0 +1,20 @@
+name: merged su-blog.ru
+run-name: Stop SU-BLOG dev instance
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions: read-all
+
+jobs:
+  merged:
+    name: Stop dev instance
+    runs-on: [self-hosted, su-blog, dev]
+    timeout-minutes: 60
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Stop service
+      run: |
+        make stop
