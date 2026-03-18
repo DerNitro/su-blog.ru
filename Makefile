@@ -21,16 +21,22 @@ endif
 DOCKER_RUN      = docker run --rm -v $(PWD)/src/:/data
 DOCKER_IMAGE    = su_blog_nikola:$(USER)
 
-.PHONY: start build test stop console
+.PHONY: start build test stop console clean
 
-docker: 
+docker:
 	docker build --build-arg UID=$(USER_ID) -t $(DOCKER_IMAGE) .ci/
+
+clean:
+	-rm src/.doit.db
+	-rm -rf src/__pycache__
+	-rm -rf src/cache
+	-rm -rf src/output
 
 build: docker
 	$(DOCKER_RUN) --entrypoint rst-lint $(DOCKER_IMAGE) --level info posts/ pages/
 	$(DOCKER_RUN) $(DOCKER_IMAGE) build
 
-test: build
+test: clean build
 	$(DOCKER_RUN) --entrypoint pyspelling $(DOCKER_IMAGE) -v
 
 start: build
