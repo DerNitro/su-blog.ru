@@ -39,7 +39,7 @@ build: docker
 test: stop clean build
 	$(DOCKER_RUN) --entrypoint pyspelling $(DOCKER_IMAGE) -v
 
-start:
+start: docker
 	@test -d $(PWD)/src/output || mkdir $(PWD)/src/output
 	@CONTAINER_NAME=$(CONTAINER_NAME) LOCAL_PORT=$(LOCAL_PORT) docker compose up -d
 	@/bin/echo "Site available url $(URL)"
