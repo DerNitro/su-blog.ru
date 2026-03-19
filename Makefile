@@ -1,9 +1,8 @@
 PWD				= $(shell pwd)
 USER			= $(shell whoami)
 USER_ID			= $(shell id -u $(USER))
-GIT_BRANCH		= $(shell git branch --show-current)
 
-ifeq ($(GIT_BRANCH), main)
+ifeq ($(BLOG_ENV), prod)
 LOCAL_PORT		= 8000
 CONTAINER_NAME	= su-blog
 URL				= https://su-blog.ru
