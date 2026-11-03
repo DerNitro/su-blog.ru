@@ -1,4 +1,5 @@
 spellchecker: hunspell
+jobs: 8
 
 matrix:
 - name: EN HTML
