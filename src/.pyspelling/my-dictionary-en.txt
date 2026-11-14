@@ -22,11 +22,12 @@ deserialization
 DevOps
 DN
 Expert
-fd
+FastAPI
 file-nr
 filesystem
 firewalld
 ForceCommand
+frontend
 freebsd
 FS
 fstab
@@ -52,6 +53,7 @@ LVM
 LXC
 Makefile
 Medium
+microservice
 Multithreaded
 multithreading
 Nagios
@@ -71,10 +73,13 @@ py
 pyRegistryStore
 pyRMA
 pyRsyncBackup
+pyrsyncbackup
 pysensor
 pySpoolerRenamer
 pytest
 PyYAML
+reactions
+reactions-widget
 recvfrom
 Resource
 reStructuredText
@@ -88,6 +93,8 @@ Sergey
 sftp
 SFTP
 SNMP
+SQLAlchemy
+src
 stdin
 strace
 sudo
@@ -99,11 +106,15 @@ TCP
 tcpdump
 Technical
 Testinfra
+tmpl
 TTY
 udp
 UDP
+updateStatsUI
+UserViewModel
 uwsgi
 Utkin
+UX
 vfork
 VM
 WinRM
@@ -111,4 +122,6 @@ YADRO
 yaml
 Yandex
 yml
+JS
+pre
 zabbix

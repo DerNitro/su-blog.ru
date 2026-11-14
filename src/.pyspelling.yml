@@ -24,6 +24,8 @@ matrix:
       - nav
       - img[alt]
       - a
+      - div#reactions-widget
+      - section.reactions-section
   - pyspelling.filters.url:
 - name: RU RST
   sources:
@@ -48,4 +50,6 @@ matrix:
       - nav
       - img[alt]
       - a
+      - div#reactions-widget
+      - section.reactions-section
   - pyspelling.filters.url:

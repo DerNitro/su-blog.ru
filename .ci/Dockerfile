@@ -1,4 +1,4 @@
-FROM python:3.10-slim-bookworm
+FROM python:3.14-slim-bookworm
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt install -y curl hunspell hunspell-en-us hunspell-ru && rm -rf /var/lib/apt/lists/*
