@@ -38,6 +38,78 @@
     ${helper.html_pager(post)}
     </nav>
     </aside>
+    % if not post.meta('nocomments'):
+        <section class="reactions-section" style="margin: 30px 0; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+            <h3>Reactions & Stats</h3>
+            <div id="reactions-widget" style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-size: 18px;">
+                <button onclick="sendReaction('likes')" id="btn-likes" class="reaction-btn" style="cursor: pointer; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; background: white;">👍 <span id="count-likes">0</span></button>
+                <button onclick="sendReaction('heart')" id="btn-heart" class="reaction-btn" style="cursor: pointer; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; background: white;">❤️ <span id="count-heart">0</span></button>
+                <button onclick="sendReaction('fire')" id="btn-fire" class="reaction-btn" style="cursor: pointer; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; background: white;">🔥 <span id="count-fire">0</span></button>
+                <button onclick="sendReaction('clap')" id="btn-clap" class="reaction-btn" style="cursor: pointer; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; background: white;">👏 <span id="count-clap">0</span></button>
+                <button onclick="sendReaction('poop')" id="btn-poop" class="reaction-btn" style="cursor: pointer; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; background: white;">💩 <span id="count-poop">0</span></button>
+                <span style="margin-left: auto; font-size: 14px; color: #666;">👁 <span id="count-views">0</span> views</span>
+            </div>
+            <script>
+                const postSlug = window.location.pathname;
+                const apiUrl = window.location.port === '8888' ? 'http://127.0.0.1:8083' : (window.location.port === '8000' ? 'http://127.0.0.1:8082' : '');
+
+                function updateStatsUI(data) {
+                    document.getElementById('count-likes').innerText = data.likes || 0;
+                    document.getElementById('count-heart').innerText = data.heart || 0;
+                    document.getElementById('count-fire').innerText = data.fire || 0;
+                    document.getElementById('count-clap').innerText = data.clap || 0;
+                    document.getElementById('count-poop').innerText = data.poop || 0;
+                    document.getElementById('count-views').innerText = data.views || 0;
+
+                    const types = ['likes', 'heart', 'fire', 'clap', 'poop'];
+                    types.forEach(t => {
+                        const btn = document.getElementById('btn-' + t);
+                        if (!btn) return;
+                        if (data.user_reaction === t) {
+                            btn.style.background = '#e3f2fd';
+                            btn.style.borderColor = '#2196f3';
+                            btn.style.boxShadow = '0 0 5px rgba(33, 150, 243, 0.5)';
+                        } else {
+                            btn.style.background = 'white';
+                            btn.style.borderColor = '#ddd';
+                            btn.style.boxShadow = 'none';
+                        }
+                    });
+                }
+
+                async function initStats() {
+                    try {
+                        await fetch(apiUrl + '/api/views?slug=' + encodeURIComponent(postSlug), { method: 'POST' });
+                        const res = await fetch(apiUrl + '/api/reactions?slug=' + encodeURIComponent(postSlug));
+                        if (res.ok) {
+                            const data = await res.json();
+                            updateStatsUI(data);
+                        }
+                    } catch (e) {
+                        console.error('Failed to load stats', e);
+                    }
+                }
+
+                async function sendReaction(type) {
+                    try {
+                        const res = await fetch(apiUrl + '/api/reactions?slug=' + encodeURIComponent(postSlug), {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ type: type })
+                        });
+                        if (res.ok) {
+                            const data = await res.json();
+                            updateStatsUI(data);
+                        }
+                    } catch (e) {
+                        console.error('Failed to send reaction', e);
+                    }
+                }
+
+                initStats();
+            </script>
+        </section>
+    % endif
     % if not post.meta('nocomments') and site_has_comments:
         <section class="comments hidden-print">
         <h2>${messages("Comments")}</h2>

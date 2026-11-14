@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import time
+import os
+
+REACTIONS_PORT = os.environ.get("REACTIONS_PORT", "8082")
+REACTIONS_API_URL = os.environ.get(
+    "REACTIONS_API_URL", f"http://127.0.0.1:{REACTIONS_PORT}"
+)
 
 # !! This is the configuration of Nikola. !! #
 # !!  You should edit it to your liking.  !! #
@@ -147,6 +153,7 @@ NAVIGATION_LINKS = {
         ("/categories/", "Теги"),
         ("/rss.xml", "RSS"),
 		("/pages/about/", "Обо мне"),
+        ("/pages/stats/", "Статистика"),
     ),
     "en" : (
         ("/en/", "Home"),
@@ -154,6 +161,7 @@ NAVIGATION_LINKS = {
         ("/en/categories/", "Tags"),
         ("/en/rss.xml", "RSS"),
 		("/en/pages/about/", "About Me"),
+        ("/en/pages/stats/", "Stats"),
     )
 }
 
@@ -1149,24 +1157,7 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 # long time). Insert anything you want here, or even make it empty (which is
 # the default right now)
 # (translatable)
-SOCIAL_BUTTONS_CODE = """
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();
-   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-   ym(99367239, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true
-   });
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/99367239" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-"""
+SOCIAL_BUTTONS_CODE = ""
 
 # Show link to source for the posts?
 # SHOW_SOURCELINK = True
@@ -1405,7 +1396,9 @@ WARN_ABOUT_TAG_METADATA = False
 
 # Put in global_context things you want available on all your templates.
 # It can be anything, data, functions, modules, etc.
-GLOBAL_CONTEXT = {}
+GLOBAL_CONTEXT = {
+    "reactions_api_url": REACTIONS_API_URL,
+}
 
 # Add functions here and they will be called with template
 # GLOBAL_CONTEXT as parameter when the template is about to be

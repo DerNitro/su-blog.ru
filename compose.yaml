@@ -2,13 +2,33 @@ name: "${CONTAINER_NAME}"
 
 services:
   nikola:
+    build:
+      context: .ci
+      args:
+        - UID=${USER_ID}
     image: "su_blog_nikola:${USER}"
     ports:
       - "127.0.0.1:${LOCAL_PORT}:8000"
     container_name: "${CONTAINER_NAME}"
     restart: always
-    command: auto -b -a 0.0.0.0
+    command: serve -a 0.0.0.0
     volumes:
       - type: bind
         source: ./src
         target: /data
+
+  reactions:
+    build:
+      context: ./reactions
+      args:
+        - UID=${USER_ID}
+    container_name: "${CONTAINER_NAME}-reactions"
+    restart: always
+    environment:
+      - DATABASE_URL=sqlite:///data/reactions.db
+    ports:
+      - "127.0.0.1:${REACTIONS_PORT:-8082}:8080"
+    volumes:
+      - type: bind
+        source: "${REACTIONS_VOLUME_SOURCE}"
+        target: /app/data
